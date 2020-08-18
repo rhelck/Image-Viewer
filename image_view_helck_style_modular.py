@@ -8,11 +8,13 @@ import os
 root = Tk()
 root.iconbitmap('C:\\Users\\User\\desktop_clock_folder\\favicon.ico')
 
+# this allows the user to access files (presumably JPGs, but I beleive that most picture formats will be accepted) in the folder
 path = 'C:\\Users\\User\\desktop_clock_folder\\image viewer pics'
 directory = os.listdir(path)
 image_list = []
 image_name_list = []
 
+# this generates a list of image files using Pillow, and a list of corresponding names
 for f in directory:
     f_path = path + '\\' + f
     image_name_list.append(f)
@@ -22,11 +24,11 @@ print(image_name_list)
 
 position = 1
 
+# this is where the image itself is displayed on the GUI
 img_label = Label(root, image = image_list[position])
 img_label.grid(column = 0, row = 0, columnspan = 3)
-#name_label = Label(root, text = image_name_list[position])
-#name_label.grid(column = 0, row = 3, columnspan = 3)
 
+# this corresponds to the button_forward widget located far below. It modulates the position varialble by +1, thus displaying the "next" picture
 def forward():
     
     global img_label
@@ -42,6 +44,7 @@ def forward():
         name_label = Label(text = image_name_list[position])
         name_label.grid(column = 0, row = 3, columnspan = 3)
 
+#this corresponds to the button_backward widget found far below, and modulates the position variable by -1, thus bringing up the "previous" image
 def backward():
 
     global img_label
@@ -57,6 +60,7 @@ def backward():
         name_label = Label(text = image_name_list[position])
         name_label.grid(column = 0, row = 3, columnspan = 3)
 
+# this corresponds to the random_button widget, and brings up a random image from the list
 def random_func():
 
     global img_label
@@ -76,6 +80,7 @@ name_label.grid(column = 0, row = 3, columnspan = 3)
 time_label = Label(root, width = 10)
 time_label.grid(column = 0, row = 4, columnspan = 3)
 
+#this runs a clock on the widget. It's not necessay, but it seems a nice touch.
 def count():
     time_now = time.strftime('%H %M %S %p')
     time_label.configure(text = time_now)
